@@ -1,4 +1,4 @@
-package springboot.study.springbootblog.blogControllerTest;
+package springboot.study.springbootblog.blogTest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
