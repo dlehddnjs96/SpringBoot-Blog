@@ -31,7 +31,7 @@ public class UserApiController {
 
     // 스프링 시큐리티를 사용하기 전에 사용하던 방법
     // 스프링 시큐리티를 사용하면 시큐리티 설정(SecurityConfig)에서 로그인 기능을 구현
-    // 스프링 시큐리티에서는 /logout 기능을 자동으로 생성해준다. (securityHeader 에서 로그아웃에 /logout만 연결)
+    // 스프링 시큐리티에서는 /logout 기능을 자동으로 생성해준다. (securityHeader에서 로그아웃에 /logout만 연결)
     @PostMapping("/api/user/login")
     public ResponseDto<Integer> login(@RequestBody User user, HttpSession session){
         System.out.println(user.getUsername() + " 님이 로그인 했습니다.");

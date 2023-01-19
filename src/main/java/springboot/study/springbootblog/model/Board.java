@@ -32,7 +32,7 @@ public class Board {
     @Lob //대용량 데이터
     private String content; //섬머노트 라이브러리를 사용 (<html>태그가 섞여서 디자인 된다.)
 
-    @ColumnDefault("0")
+    // @ColumnDefault("0")
     private  int count; //조회수
 
     @ManyToOne //Many(Board), One(User) 연관관계로 한명의 유저가 여러개의 게시글을 쓸 수 있음을 명시

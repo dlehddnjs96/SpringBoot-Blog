@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file ="../layout/securityHeader.jsp"%>
+
+<div class="container">
+<form>
+  <!--BoardController 중 update 에서 오는 데이터 사용-->
+  <input type="hidden" id="id" value=${board.id}/>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input value="${board.title}" type="text" class="form-control" placeholder="Enter Title" id="title">
+  </div>
+  <div class="form-group">
+    <label for="content">Content:</label>
+    <textarea class="form-control summernote" rows="15" id="content">${board.content}</textarea>
+  </div>
+</form>
+<button id="btn-update" class="btn btn-primary">수정완료</button>
+</div>
+
+<!--"#"은 id, "."은 class로 해당부분을 찾는다.-->
+<script>
+      $('.summernote').summernote({
+        placeholder: 'Enter Content',
+        tabsize: 2,
+        height: 300
+      });
+</script>
+<script src="/js/board.js"></script>
+<%@ include file ="../layout/footer.jsp"%>
+

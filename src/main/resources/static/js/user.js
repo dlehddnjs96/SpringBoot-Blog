@@ -50,6 +50,7 @@ let index ={
         }).done(function(resp){
             // resp에 응답 데이터를 받는다.
             // true
+            // 메시지를 보여준 후 인덱스 폼으로 이동
             alert("사용자의 회원가입이 완료되었습니다.");
             location.href="/";
         }).fail(function(error){
@@ -85,7 +86,7 @@ let index ={
                     location.href="/";
                 }else{
                     alert("계정 또는 비밀번호가 맞지 않습니다.");
-                    location.href="/loginForm";
+                    location.href="/user/loginForm";
                 }
 
 

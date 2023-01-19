@@ -33,7 +33,7 @@ public class SecurityConfig  {
             // Request가 들어오면
             .authorizeHttpRequests()
             // auth가 포함된 모른 경로를 permitAll(허락)한다.
-            .antMatchers("/auth/**","/js/**","/css/**","/image/**")
+            .antMatchers("/","/auth/**","/js/**","/css/**","/image/**")
             .permitAll()
             // 위 경로가 아닌 모든 경로는 authenticated (인증)되어야 한다.
             .anyRequest()
