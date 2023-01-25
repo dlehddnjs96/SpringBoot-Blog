@@ -5,6 +5,7 @@
 <!--
 <form>
 -->
+<!--로그인은 시큐리티가 요청을 가로채서 처리한다.-->
 <form action="/auth/loginProc" method="post">
   <div class="form-group">
     <!--security 사용 전에는 id만 사용, security 사용 후에는 name 추가사용-->

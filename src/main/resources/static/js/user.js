@@ -9,6 +9,9 @@ let index ={
         $("#btn-login").on("click", ()=>{
             this.login();
         });
+        $("#btn-update").on("click", ()=>{
+            this.update();
+        });
     },
 
     save:function(){
@@ -95,7 +98,38 @@ let index ={
                 alert(JSON.stringify(error));
             });
 
-        }
+        },
+
+    update:function(){
+            let data ={
+                // HTML(joinForm.jsp) 해당 ID를 가진 태그에서 값을 가저와서 저장.
+                id: $("#id").val(),
+                username: $("#username").val(),
+                password: $("#password").val(),
+                email: $("#email").val()
+            };
+
+            $.ajax({
+                // 회원정보 수정 수행 요청
+                type:"PUT",
+                url:"/user",
+                // 자바스크립트 오브젝트를 자바가 이해할 수 있게 JSON으로 변환
+                data:JSON.stringify(data),
+                // Post는 http body 데이터이므로 타입을 알려줘야한다. (요청 데이터타입, MINE)
+                contentType:"application/json; charset=utf-8",
+                // 서버에서 응답으로 들어오는 데이터 타입은 모두 String이지만 형태가 Json이라면 자바스크립트 오브젝트로 변환해준다. (응답 데이터타입)
+                dataType:"json"
+            }).done(function(resp){
+                // resp에 응답 데이터를 받는다.
+                // true
+                // 메시지를 보여준 후 인덱스 폼으로 이동
+                alert("사용자의 정보가 변경되었습니다.");
+                location.href="/";
+            }).fail(function(error){
+                // false
+                alert(JSON.stringify(error));
+            });
+            }
 }
 // index 안에 init 함수 호출
 index.init();
