@@ -54,8 +54,14 @@ let index ={
             // resp에 응답 데이터를 받는다.
             // true
             // 메시지를 보여준 후 인덱스 폼으로 이동
-            alert("사용자의 회원가입이 완료되었습니다.");
+            // status = 500 (오류 발생)
+            if(resp.status === 500){
+                alert("이미 존재하는 회원이름입니다.");
+            }else{
+                alert("사용자의 회원가입이 완료되었습니다.");
             location.href="/";
+            }
+
         }).fail(function(error){
             // false
             alert(JSON.stringify(error));

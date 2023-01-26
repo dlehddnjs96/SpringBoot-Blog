@@ -1,5 +1,6 @@
 package springboot.study.springbootblog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,9 +41,13 @@ public class Board {
     private User user; //DB는 객체를 저장할 수 없지만 자바는 오브젝트를 저장할 수 있다. (FK 사용X)
 
     // mappedBy : 연관관계의 주인이 아니라 FK를 DB 컬럼에 생성하지 않도록 설정 (Join 기능만 사용)
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER) //한 개의 게시글에 여려개의 답변이 가능하다.
+    // 한 개의 게시글에 여려개의 답변이 가능하다.
+    // cascade 명령어를 이용하여 Board 테이블에 포함된 Reply 외래키를 찾아 모두 삭제
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"board"}) // Board 클래스를 통해 Reply 클래스를 호출 헀을 때 board의 Getter 호출을 막아 무한참조를 방지한다.
+    @OrderBy("id desc") // id 값을 기준으로 내림차순 (최신순)으로 정렬
     //  @JoinColumn을 사용하지 않는 이유 : 여러 개의 답변이 가능하므로 원자성이 깨질 수 있어 FK로 생성하지 않는다.
-    private List<Reply> reply;
+    private List<Reply> replys;
 
     @CreationTimestamp
     private Timestamp createDate;

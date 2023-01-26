@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import springboot.study.springbootblog.dto.ReplySaveRequestDto;
 
 import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
@@ -34,4 +35,10 @@ public class Reply {
 
     @CreationTimestamp
     private Timestamp createDate;
+
+    public void update(User user, Board board, String content){
+        setUser(user);
+        setBoard(board);
+        setContent(content);
+    }
 }

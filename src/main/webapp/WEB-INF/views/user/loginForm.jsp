@@ -17,6 +17,8 @@
     <input type="password" name="password" class="form-control" placeholder="Enter Password" id="password">
   </div>
   <button id="btn-securityLogin" class="btn btn-primary">로그인</button>
+  <!--카카오 개발 페이지에서 등록 후 내 앱에서 키와 문서 - REST API - 인가코드 받기에서 요청주소 받아오기-->
+  <a href="https://kauth.kakao.com/oauth/authorize?client_id=8624aab618e29f5d6c8e225b3d09766e&redirect_uri=http://localhost:8000/auth/kakao/callback&response_type=code"><img height="38px" src="/image/kakao_login_medium.png"/></a>
 </form>
 </div>
 <!--

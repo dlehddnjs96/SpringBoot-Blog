@@ -78,12 +78,10 @@ public class UserApiController {
         // Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         // SecurityContext securityContext = SecurityContextHolder.getContext();
         // securityContext.setAuthentication(authentication);
-
-
-
-
         return new ResponseDto<Integer>(HttpStatus.OK.value(),1);
     }
+
+
 
 
 }

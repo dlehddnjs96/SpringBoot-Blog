@@ -11,14 +11,31 @@
     <label for="username">Username</label>
     <input type="text" value="${principal.user.username}" class="form-control" placeholder="Enter Username" id="username" readonly>
   </div>
-  <div class="form-group">
-     <label for="email">Email</label>
-     <input type="email" value="${principal.user.email}" class="form-control" placeholder="Enter Email" id="email">
-   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password"  class="form-control" placeholder="Enter Password" id="password">
-  </div>
+  <!--if문-->
+    <c:choose>
+      <c:when test="${not empty principal.user.oauth}">
+      <!--oauth 카카오 일때 (카카오로그인)-->
+       <div class="form-group">
+           <label for="email">Email</label>
+           <input type="email" value="${principal.user.email}" class="form-control" placeholder="Enter Email" id="email" readonly>
+       </div>
+       <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" placeholder="Enter Password" id="password" readonly>
+       </div>
+      </c:when>
+      <c:otherwise>
+      <!--oauth null 일때 (일반로그인)-->
+       <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" value="${principal.user.email}" class="form-control" placeholder="Enter Email" id="email" >
+       </div>
+       <div class="form-group">
+         <label for="password">Password</label>
+         <input type="password" class="form-control" placeholder="Enter Password" id="password" >
+       </div>
+      </c:otherwise>
+    </c:choose>
 </form>
 <!--user.js 사용하여 기능사용-->
 <button id="btn-update" class="btn btn-primary">수정완료</button>

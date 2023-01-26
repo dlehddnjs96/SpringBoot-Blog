@@ -40,7 +40,9 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String findById(@PathVariable int id, Model model){
+        // Board 클래스에 Reply가 EAGER 전략으로 연관관계가 이어져 있기 때문에 Reply 데이터도 함께 넘어간다.
         model.addAttribute("board", boardService.boardDetail(id));
+
         return "board/detail";
     }
 

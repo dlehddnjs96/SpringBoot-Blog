@@ -36,3 +36,12 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+# kakao 로그인 사용자들의 회원가입시 사용되는 비밀번호 (가장 끝에 적어야 한다.)
+cos:
+  key: cos1234

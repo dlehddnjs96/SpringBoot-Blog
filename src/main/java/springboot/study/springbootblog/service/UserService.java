@@ -67,13 +67,25 @@ public class UserService {
         User persistence = userRepository.findById(user.getId()).orElseThrow(()->{
            return  new IllegalArgumentException("회원정보를 찾을 수 없습니다.");
         });
-        String rawPassword = user.getPassword();
-        String encPassword = encoder.encode(rawPassword);
-        persistence.setPassword(encPassword);
-        persistence.setEmail(user.getEmail());
+        // 카카오 사용자들의 비밀번호 변경을 막기 위해 설정 (Validate 설정)
+        if (persistence.getOauth() == null || persistence.getOauth().equals("")){
+            String rawPassword = user.getPassword();
+            String encPassword = encoder.encode(rawPassword);
+            persistence.setPassword(encPassword);
+            persistence.setEmail(user.getEmail());
+        }
         // 회원수정 함수 종료 = 서비스 종료 = 트랜젝션 종료 = commit이 자동으로 이루어짐 (영속화된 persistence 객체의 변화가 감지되면 더티체킹이 되어 변화된 것들을 Flush한다.)
     }
 
+    @Transactional(readOnly = true)
+    // 같은 유저 찾기
+    public User find(String username){
+        // username 데이터를 찾지못하면 빈 객체 반환
+        User user = userRepository.findByUsername(username).orElseGet(()->{
+            return new User();
+        });
+        return user;
+    }
 
 
 }

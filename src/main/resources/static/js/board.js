@@ -12,7 +12,11 @@ let index ={
         $("#btn-update").on("click", ()=>{
             this.update();
         });
+        $("#btn-reply-save").on("click", ()=>{
+            this.replySave();
+        });
     },
+
 
     save:function(){
         let data ={
@@ -44,6 +48,7 @@ let index ={
 
     },
 
+
     deleteById:function(){
             let id = $("#id").text();
 
@@ -64,6 +69,7 @@ let index ={
             });
 
         },
+
 
     update:function(){
            let id = $("#id").val();
@@ -93,10 +99,55 @@ let index ={
                // false
                alert(JSON.stringify(error));
            });
-    }
+    },
 
 
+    replySave:function(){
+            let data ={
+                // HTML(saveForm.jsp) 해당 ID를 가진 태그에서 값을 가저와서 저장.
+                userId: $("#userId").val(),
+                boardId: $("#boardId").val(),
+                content: $("#reply-content").val()
+            };
+
+            $.ajax({
+                // 글쓰기 내용 저장
+                type:"POST",
+                url:`/api/board/${data.boardId}/reply`,
+                // 자바스크립트 오브젝트를 자바가 이해할 수 있게 JSON으로 변환
+                data:JSON.stringify(data),
+                // Post는 http body 데이터이므로 타입을 알려줘야한다. (요청 데이터타입, MINE)
+                contentType:"application/json; charset=utf-8",
+                // 서버에서 응답으로 들어오는 데이터 타입은 모두 String이지만 형태가 Json이라면 자바스크립트 오브젝트로 변환해준다. (응답 데이터타입)
+                dataType:"json"
+            }).done(function(resp){
+                // resp에 응답 데이터를 받는다.
+                // true
+                // 메시지를 보여준 후 인덱스 폼으로 이동
+                alert("댓글작성이 완료되었습니다.");
+                location.href= `/board/${data.boardId}`;
+            }).fail(function(error){
+                // false
+                alert(JSON.stringify(error));
+            });
+
+        },
+
+
+   replyDelete : function(boardId, replyId){
+   			$.ajax({
+   				type: "DELETE",
+   				url: `/api/board/${boardId}/reply/${replyId}`,
+   				dataType: "json"
+   			}).done(function(resp){
+   				alert("댓글삭제가 완료되었습니다.");
+   				location.href = `/board/${boardId}`;
+   			}).fail(function(error){
+   				alert(JSON.stringify(error));
+   			});
+   		}
 
 }
+
 // index 안에 init 함수 호출
 index.init();
