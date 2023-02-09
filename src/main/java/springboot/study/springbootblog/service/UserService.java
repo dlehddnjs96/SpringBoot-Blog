@@ -68,12 +68,21 @@ public class UserService {
            return  new IllegalArgumentException("회원정보를 찾을 수 없습니다.");
         });
         // 카카오 사용자들의 비밀번호 변경을 막기 위해 설정 (Validate 설정)
+        // null 이거나, "" 이면 일반사용자
         if (persistence.getOauth() == null || persistence.getOauth().equals("")){
-            String rawPassword = user.getPassword();
-            String encPassword = encoder.encode(rawPassword);
-            persistence.setPassword(encPassword);
-            persistence.setEmail(user.getEmail());
+            // 회원정보에서 비밀번호를 따로 입력하지 않는다면
+            if (user.getPassword() == "" || user.getPassword() == null) {
+                persistence.setEmail(user.getEmail());
+            }else{
+                // 회원정보에서 비밀번호를 따로 입력한다면
+                String rawPassword = user.getPassword();
+                String encPassword = encoder.encode(rawPassword);
+                persistence.setPassword(encPassword);
+                persistence.setEmail(user.getEmail());
+
+            }
         }
+
         // 회원수정 함수 종료 = 서비스 종료 = 트랜젝션 종료 = commit이 자동으로 이루어짐 (영속화된 persistence 객체의 변화가 감지되면 더티체킹이 되어 변화된 것들을 Flush한다.)
     }
 

@@ -15,21 +15,22 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-  # Mysql을 연결하고 3306번 포트에서 blog라는 DB를 사용하고 타임존은 서울로 설정한다.(연결을 위한 ID,PW 입렫)
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # Mysql을 연결하고 3306번 포트에서 blog라는 DB를 사용하고 타임존은 서울로 설정한다.(연결을 위한 ID,PW 입렫)
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: blog
-    password: qwe123
+    password: 1234
 
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update #처음에만 create로 테이블을 생성하고 그 이후에는 update해야 데이터가 보존된다.
+      ddl-auto: create #처음에만 create로 테이블을 생성하고 그 이후에는 update해야 데이터가 보존된다.
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl #Entity를 만들때 변수명 그대로 DB에서 컬럼명을 생성하는 전력을 사용
       use-new-id-generator-mappings: false #JPA가 사용하는 기본 넘버링 전략을 사용하지 않는다.
-    show-sql: true #console에서 DB작업 확인가능
+    show-sql: false #console에서 DB작업 확인가능
     properties:
       hibernate.format_sql: true #console에서 DB작업 정렬
 

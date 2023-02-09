@@ -71,8 +71,9 @@ public class UserApiController {
         // 따라서 직접 세션값을 변경해줘야한다.
         // AuthenticationManger로 만들면 UserDetailService가 username으로 db에 질의해서 있는지 확인후 있으면 그걸 토대로
         // 비밀번호 암호화 후 그 암호화된 비밀번호까지 db 질의를 통해 확인 한 뒤 시큐리티 컨텍스트에 넣는것이다.
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getId()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         // AuthenticationManger 사용하지 않고 세션값 변경
         // UserDetails userDetails = principalDetailService.loadUserByUsername(user.getUsername());
         // Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

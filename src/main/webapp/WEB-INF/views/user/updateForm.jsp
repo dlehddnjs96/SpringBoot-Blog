@@ -21,7 +21,7 @@
        </div>
        <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" placeholder="Enter Password" id="password" readonly>
+          <input type="password" class="form-control" placeholder="Password" id="password" readonly>
        </div>
       </c:when>
       <c:otherwise>
@@ -32,7 +32,7 @@
        </div>
        <div class="form-group">
          <label for="password">Password</label>
-         <input type="password" class="form-control" placeholder="Enter Password" id="password" >
+         <input type="password" class="form-control" placeholder="비밀번호를 변경시 입력해주세요." id="password" >
        </div>
       </c:otherwise>
     </c:choose>
