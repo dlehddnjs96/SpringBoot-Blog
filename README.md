@@ -4,7 +4,7 @@
 회원가입을 통해 계정을 생성하고 로그인하여 각각의 계정마다 자신의 글쓰기, 수정, 삭제, 댓글 기능을 가진 블로그. 
 
 ## ⚙ 개발환경 </br>
-- 프로그래밍 언어 : Java (JDK 1.8) </br>
+- 프로그래밍 언어 : Java (JDK 8) </br>
 - IDE : IntelliJ </br>
 - Framework : SpringBoot </br>
 - DataBase : MySQL (MySQL 5.7) </br>
